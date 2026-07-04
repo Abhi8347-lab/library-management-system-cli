@@ -19,20 +19,38 @@ class person:
 class member(person):
 
     def borrow(self, title):
+        found=False
         for t in p:
             if t['title'] == title:
-                t['copies'] -= 1
-        print(f'{title} borrowed by {self.name}')
+                found = True
+                if t['copies']>0:
+                 t['copies'] -= 1
+                 print(f'{title} borrowed by {self.name}')
+                else:
+                   print('book not available')
+                break
+
+        if not found :
+          print('not possible')
         with open('data.json', 'w') as f:
-            json.dump(p, f, indent=4)
+           json.dump(p, f, indent=4)
 
     def return_book(self, title):
+        found=False
         for o in p:
+
             if o['title'] == title:
+                found=True
+
                 o['copies'] += 1
-        print(f'{title} returned by {self.name}')
+                break
+            print(f'{title} returned by {self.name}')
+
+
+        if not found:
+            print('book not found')
         with open('data.json', 'w') as f:
-            json.dump(p, f, indent=4)
+             json.dump(p, f, indent=4)
 
 class librarian(person):
 
@@ -42,7 +60,7 @@ class librarian(person):
             json.dump(p, f, indent=4)
 
     def show_data(self):
-        print(data)
+        print(p)
 
 while True:
     print("\n=== Library Management System ===")
@@ -51,7 +69,7 @@ while True:
     print("3. Return a book")
     print("4. Add a book (librarian)")
     print("5. exit")
-    
+
 
     choice = input("\nEnter your choice (1-6): ")
 
@@ -68,6 +86,9 @@ while True:
     elif choice == "3":
         name = input("Enter your name: ")
         title = input("Enter book title: ")
+
+
+
         m = member(name)
         m.return_book(title)
 
