@@ -50,8 +50,8 @@ while True:
     print("2. Borrow a book")
     print("3. Return a book")
     print("4. Add a book (librarian)")
-    print("5. Search by author")
-    print("6. Exit")
+    print("5. exit")
+    
 
     choice = input("\nEnter your choice (1-6): ")
 
@@ -62,15 +62,12 @@ while True:
     elif choice == '2':
         name = input('enter your name :')
         title = input("Enter book title: ")
-        r = int(input('enter number of copies:'))
-
         m = member(name)
         m.borrow(title)
 
     elif choice == "3":
         name = input("Enter your name: ")
         title = input("Enter book title: ")
-        y = int(input('enter number of copies:'))
         m = member(name)
         m.return_book(title)
 
