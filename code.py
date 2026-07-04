@@ -43,8 +43,9 @@ class member(person):
                 found=True
 
                 o['copies'] += 1
-                break
-                print(f'{title} returned by {self.name}')
+                print(f'{title} returned by {self.name}') 
+                break             
+                
 
 
         if not found:
